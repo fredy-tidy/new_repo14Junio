@@ -3,4 +3,180 @@
 *:before,
 *:after {
   box-sizing: border-box;
+  right: 10%;
+  left: 10%;
+}
+
+
+
+header{ 
+
+  display: flex; 
+  justify-content: space-between;
+  text-decoration-color:#000000;
+  padding: 14px 16px;
+}
+
+header a {
+  text-decoration: none;
+
+}
+
+.siteName{
+  font-size:x-large;
+
+}
+#tools{
+  color:#000000;
+}
+
+.menu {
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+  }
+    
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111;
+  }
+}
+
+/* Format for principal area */
+.main-head{
+  padding: 14px 16px;
+  width:80%;
+  
+}
+.area-main{
+  
+  position: relative;
+  display: inline-block;
+  
+}
+
+.title-fragment{
+  font-size:x-large;
+}
+
+.box-text-main{
+  background: rgba(251, 251, 251, 0.764);
+  color: rgb(4, 48, 120);
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.imagen-main{
+  width: 200%; 
+}
+
+.reviews{
+  padding: 14px 16px;
+  width:80%;
+  
+}
+
+.upgrades{
+  padding: 14px 16px;
+  width:80%;
+  
+}
+
+.content-upgrades img{
+  width: auto;
+  height: 110px;
+}
+
+.content-upgrades a{
+  justify-content: center;
+
+}
+.first-upgrades{
+  display: flex; 
+  justify-content: space-between;
+  text-decoration-color:none;
+  padding: 14px 16px;
+}
+
+.second-upgrades{
+  display: flex; 
+  justify-content: space-between;
+  text-decoration-color:none;
+  padding: 14px 16px;
+}
+
+
+@media only screen and (min-width:720px) {
+  #wrapper{
+    background-color: white;
+    display: grid;
+    grid-template-columns: auto auto ;
+    grid-template-rows: auto auto auto auto auto;
+    padding: 10px;
+  }
+  body{
+    background-image: url(/images/site/checkerboard.jpg);
+    background-repeat: round; 
+  }
+  header{ 
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  nav{
+    grid-row: 2;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  main{
+    grid-row: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    
+  }
+  .fragments{
+    display: grid;
+    grid-template-columns: auto auto ;
+    grid-template-rows: auto auto;
+  }
+  .main-head{
+    grid-row:1;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  .reviews{
+    grid-row: 2;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    
+  }
+  .content-reviews{
+    line-height: 50px;
+  }
+
+
+  .upgrades{
+    grid-row: 2;
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+  footer{
+    grid-row: 4;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
 }
