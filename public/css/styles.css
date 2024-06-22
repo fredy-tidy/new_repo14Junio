@@ -30,31 +30,31 @@ header a {
   color:#000000;
 }
 
-.menu {
 
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    display: flex;
-    justify-content: space-between;
-  }
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+}
     
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
+.menu li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
   
   /* Change the link color to #111 (black) on hover */
-  li a:hover {
-    background-color: #111;
-  }
+.menu li a:hover {
+  background-color: #111;
 }
+
 
 /* Format for principal area */
 .main-head{
@@ -108,14 +108,12 @@ header a {
 .first-upgrades{
   display: flex; 
   justify-content: space-between;
-  text-decoration-color:none;
-  padding: 14px 16px;
+   padding: 14px 16px;
 }
 
 .second-upgrades{
   display: flex; 
   justify-content: space-between;
-  text-decoration-color:none;
   padding: 14px 16px;
 }
 
