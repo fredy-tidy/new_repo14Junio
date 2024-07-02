@@ -30,8 +30,6 @@ header a {
   color:#000000;
 }
 
-
-
 .menu ul {
   list-style-type: none;
   margin: 0;
@@ -58,7 +56,7 @@ header a {
 
 /* Format for principal area */
 .main-head{
-  padding: 14px 16px;
+  
   width:80%;
   
 }
@@ -117,19 +115,70 @@ header a {
   padding: 14px 16px;
 }
 
+ /******* Activity week 3 ***************/
+  .details{
+    width: 90%;
+    height: 100%;
+    margin-left: auto; 
+    margin-right:auto;
+    border: 5px solid rgb(0, 0, 0);
+  }
+  #inv-display{
+  
+  list-style-type: none;
+  text-align: center;
+  }
+  #inv-display li{
+  border: 5px solid rgb(0, 0, 0);
+  margin: 10px 30px 15px 30px;
+  text-align: center;
+  }
+
+  .details_make_model{
+    font-size:x-large ;
+    font-weight: bold;
+
+  }
+  .detail{
+    font-weight: bold;
+  }
+  .details_image{
+    width:90%;
+  }
+
+  .details_image{
+    width: 90%;
+    margin: 25px 0 0 25px;
+   
+
+  }
+  .details_image img{
+    width: 90%;
+    margin: 25px 0 0 25px;
+   
+
+  }
+  .details_characteristics{
+    width: 90%;
+    margin-left: auto; 
+    margin-right:auto;
+  }
 
 @media only screen and (min-width:720px) {
   #wrapper{
     background-color: white;
     display: grid;
     grid-template-columns: auto auto ;
-    grid-template-rows: auto auto auto auto auto;
-    padding: 10px;
+    grid-template-rows: auto auto auto auto;
+    
   }
+  
+
   body{
     background-image: url(/images/site/checkerboard.jpg);
     background-repeat: round; 
   }
+  
   header{ 
     grid-row: 1;
     grid-column-start: 1;
@@ -144,6 +193,10 @@ header a {
     grid-row: 3;
     grid-column-start: 1;
     grid-column-end: 3;
+    
+  }
+  footer{
+    grid-row: 4;
     
   }
   .fragments{
@@ -172,9 +225,38 @@ header a {
     grid-column-start: 1;
     grid-column-end: 2;
   }
-  footer{
-    grid-row: 4;
-    grid-column-start: 1;
-    grid-column-end: 3;
+  
+  /******* Activity week 3 ***************/
+  
+  #inv-display{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    }
+  #inv-display li{
+    border: 5px solid rgb(0, 0, 0);
+    margin: 10px 10px 10px 10px;
+    text-align: center;
   }
+
+  .details{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    height: 80%;
+  }
+  .details_image{
+    grid-column: start;
+   
+
+  }
+  
+  .details_characteristics{
+    grid-column: end;
+
+  }
+
+
 }
+
+

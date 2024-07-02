@@ -58,5 +58,36 @@ Util.buildClassificationGrid = async function(data){
   }
   return grid
 }
+/* **************************************
+* Build the details view HTML
+* ************************************ */
+Util.buildDetailGrid = async function(data){
+  let grid
+  if(data.length > 0){
+    grid = '<div class = "details">'
+    data.forEach(vehicle => { 
+      grid += '<div class="imagen">'
+      grid += '<p class="details_image">' + '<img src="'+ vehicle.inv_image+'" alt="'+vehicle.inv_model+'"></p>'
+      grid += '</div>'
+      grid += '<div class="details_characteristics">'
+      grid += '<p class="details_make_model">' + vehicle.inv_make+ ' '+ vehicle.inv_model+ ' Details </p>'
+      
+      grid += '<p class="details_price"> <span class="detail"> Price: </span> $'+ new Intl.NumberFormat('en-US').format(vehicle.inv_price) 
+      +'</p>'
+      grid += '<p class="details_description"> <span class="detail"> Description: </span>'
+      + vehicle.inv_description+'</p>'
+      grid += '<p class="details_color"> <span class="detail"> Color: </span>' 
+      +  vehicle.inv_color+'</p>'
+      grid += '<p class="details_miles"> <span class="detail" >Miles: </span>'
+      +Intl.NumberFormat('en-US').format(vehicle.inv_miles) +'</p>'
+      grid += '</div>'
+      grid += '</div>'
+    })
+    
+  } else { 
+    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+  }
+  return grid
+}
 
 module.exports = Util
