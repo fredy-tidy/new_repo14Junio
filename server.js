@@ -36,7 +36,7 @@ app.get("/", baseController.buildHome)
 app.use("/inv",inventoryRoute)
 app.use("/rigths",async ( req, res, next) => {
   let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": 500-type error`)
+  console.error(`Error at: "${req.originalUrl}" 500-type error`)
   res.render("errors/error", {
     title: '500 Internal Server Error' || 'Internal Server Error',
     message: 'This Error is implemented intentionally.',
