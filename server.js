@@ -80,3 +80,4 @@ app.use(async (err, req, res, next) => {
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
+server.address().port
