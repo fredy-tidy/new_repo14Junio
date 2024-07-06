@@ -58,7 +58,7 @@ app.use(async (req, res, next) => {
  *************************/
 const port = process.env.PORT
 const host = process.env.HOST
-const databaseUrl = process.env.DATABASE_URL;
+const databaseUrl = process.env.DATABASE_URL
 
 /* ***********************
 * Express Error Handler
