@@ -14,6 +14,7 @@ const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities")
 
+
 /* ***********************
  * View Engine and Templates
  *************************/
@@ -57,6 +58,7 @@ app.use(async (req, res, next) => {
  *************************/
 const port = process.env.PORT
 const host = process.env.HOST
+const databaseUrl = process.env.DATABASE_URL;
 
 /* ***********************
 * Express Error Handler
@@ -80,4 +82,4 @@ app.use(async (err, req, res, next) => {
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
-server.address().port
+
