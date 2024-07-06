@@ -35,6 +35,9 @@ app.use(static)
 // I am changing this instruction 
 app.get("/", baseController.buildHome)
 app.use("/inv",inventoryRoute)
+/*   Only for test
+
+
 app.use("/rigths",async ( req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}" 500-type error`)
@@ -44,7 +47,7 @@ app.use("/rigths",async ( req, res, next) => {
     nav
   })
 } )
-
+*/
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
