@@ -1,0 +1,32 @@
+<div class="page_login"> 
+
+
+<% if (title) { %>
+    <h1><%- title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+
+    <% messages() %>
+    <div class="div_login">
+    <form class="login_form" action="">
+        <label for="email_label">Email:</label>
+        <br>
+        <input type="email" id="email_input" name="account_email" />
+        <br>
+        <label for="pass_label">Password:</label>
+        <br>
+        <input type="password" placeholder="8 characteres minimum" id="pass_input" name="account_password" minlength="8" required />
+        <br>
+        <div class= "submit_form" >
+        <input type="submit" value="Login" />
+      </div>
+    </form>
+        <p>No account? <a href="#"> Sign-up</a></p>
+        
+      </div>
+      <br>
+</div>
+
+

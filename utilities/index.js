@@ -90,4 +90,11 @@ Util.buildDetailGrid = async function(data){
   return grid
 }
 
+Util.handleErrors = async function (req, res, next) {
+  console.log('LOGGED')
+  next()
+}
+
+
+
 module.exports = Util
