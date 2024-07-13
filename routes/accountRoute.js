@@ -10,7 +10,10 @@ const utilities = require("../utilities")
 // The account part of the path should be placed in the server.js file,
 // when this router is required.
 
-router.get("/login", accountController.buildLogin)
+// Route to build login view
+router.get("/login",utilities.handleErrors(accountController.buildLogin))
+router.get("/register",utilities.handleErrors( accountController.buildRegister ))
+router.post('/register', utilities.handleErrors(accountController.registerAccount))
 
 module.exports = router
 

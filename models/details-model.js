@@ -19,5 +19,5 @@ async function getDetailById(inv_id){
     }
 }
 
-module.exports = {getDetailById};
+module.exports = {getDetailById}
 /* module.exports = {getDetailById} */

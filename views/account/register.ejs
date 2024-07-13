@@ -1,4 +1,4 @@
-<div class="page_login"> 
+<div class="page_register"> 
 
 
 <% if (title) { %>
@@ -9,12 +9,21 @@
 
 
     <% messages() %>
-    <div class="div_login">
-    <form class="login_form" action="">
+    <div class="div_register">
+    <form class="register_form" action="/account/register" method="post">
+      <label for="first_name_label">First name:</label>
+      <br>
+      <input type="text" id="first_name_input" name="account_firstname" required />
+      <br>
+      <label for="last_name_label">Last name:</label>
+        <br>
+        <input type="text" id="last_name_input" name="account_lastname" required/>
+        <br>
         <label for="email_label">Email:</label>
         <br>
-        <input type="email" id="email_input" name="account_email" required/>
+        <input type="email" id="email_input" name="account_email" required placeholder="Enter a valid email address" required/>
         <br>
+       
         <label for="pass_label">Password:</label> 
         <br>
         <input type="password" name="account_password" id="accountPassword" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" placeholder="12 characters">
@@ -23,10 +32,10 @@
         <span class="pass_indication">Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
         <br>
         <div class= "submit_form" >
-        <input type="submit" value="Login" />
+        <input type="submit" value="Register" />
       </div>
     </form>
-        <p>No account? <a href="/account/register" class="active"> Sign-up</a></p>
+       
         
       </div>
       <br>

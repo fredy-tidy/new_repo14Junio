@@ -165,7 +165,7 @@ header a {
   }
 
 
-  .page_login {
+  .page_login, .page_register {
     margin: 10px 50px 20px;
     background-color: aqua;
     border: 3px solid rgb(15, 15, 15);
@@ -173,16 +173,16 @@ header a {
     text-align: center;
     
   }
-  .div_login{
-    margin: 10% 5% 20%;
+  .div_login, .div_register{
+    margin: 10% 5% 10%;
     border: 20px solid rgb(32, 25, 25);
     background-color: #333;
     color:white;
     
     
   }
-  .login_form{
-    margin: 10% 25% 20%;
+  .login_form, .register_form{
+    margin: 10% 25% 10%;
     
     width: 200px;
     text-align: left;
@@ -192,7 +192,25 @@ header a {
     margin: 15px 40px 10px; 
     
   }
+  
+    .active {
+      font-weight: bold;
+      color: white;
+    }
+    input:required:invalid, input:focus:invalid {
+      background-image: url(/images/invalid.png);
+      background-position: right top;
+      background-repeat: no-repeat;
+    }
+      input:required:valid {
+      background-image: url(/images/valid.png);
+      background-position: right top;
+      background-repeat: no-repeat;
+    }
 
+    .pass_indication{
+      font-size: medium;
+    }
 
 @media only screen and (min-width:720px) {
   #wrapper{
@@ -286,19 +304,17 @@ header a {
 
   }
 
-  .login_form{
-    margin: 10% 30% 20%; 
+  .login_form, .register_form{
+    margin: 10% 30% 5%; 
     font-size: x-large;
-    width: 200px;
+    width: 50%;
+    height: 50%;
     text-align: left;
     border: 3px solid rgb(252, 252, 252);
     padding-left: 2%; 
   }
 
-  .submit_form{
-   
-    
-  }
+  
 
 }
 
