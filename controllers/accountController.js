@@ -14,15 +14,17 @@ accountController.buildLogin = async function (req, res, next) {
     })
 }
 /* ****************************************
-*  Deliver Register view
+*  Deliver Register view  (Deliver registration view)
 * *************************************** */
 accountController.buildRegister = async function (req, res, next) {
     let nav = await utilities.getNav()
-    res.render("account/Register", {
+    res.render("account/register", {
       title: "Register",
       nav,
+      errors: null,
     })
 }
+
 
 /* ****************************************
 *  Process Registration
@@ -56,4 +58,6 @@ accountController.registerAccount = async function (req, res) {
     }
   }
   
+
+
   module.exports = accountController
