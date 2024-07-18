@@ -5,6 +5,7 @@
 /* ***********************
  * Require Statements
  *************************/
+
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
@@ -18,6 +19,10 @@ const pool = require('./database/')
 const accountRoute = require("./routes/accountRoute")
 //const accountController = require("./controllers/accountController")
 const bodyParser = require("body-parser")
+//Login: JWT and Cookie
+const cookieParser = require("cookie-parser")
+
+
 
 /* ***********************
  * Middleware
@@ -32,6 +37,11 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }))
+
+//Login: JWT and Cookie
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
+
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -78,6 +88,9 @@ app.use("/rigths",async ( req, res, next) => {
     nav
   })
 } )
+
+app.use("/account/",accountRoute)
+
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
