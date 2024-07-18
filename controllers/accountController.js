@@ -125,9 +125,9 @@ accountController.registerAccount = async function (req, res) {
  /* ****************************************
 *  Deliver login view
 * *************************************** */
-accountController.buildAccount = async function (req, res, next) {
+accountController.buildManagement = async function (req, res, next) {
   let nav = await utilities.getNav()
-  res.render("account/management", {
+  res.render("account/account-management", {
     title: "Account management view",
     nav,
     errors:null,
