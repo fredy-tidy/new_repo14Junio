@@ -1,0 +1,46 @@
+<div class="page_add-classification"> 
+
+   
+    <% if (title) { %>
+        <h1><%- title %></h1>
+        <% } else {
+          res.redirect('/')
+        } %>
+    
+    
+        <% messages() %>
+    
+    
+    
+    
+        <% if (errors) { %>
+          <ul class="notice">
+         <% errors.array().forEach(error => { %>
+           <li><%= error.msg %></li>
+        <%  }) %>
+         </ul>
+        <% } %>
+    
+    
+    
+        <div class="div_add-classification">
+        <form class="add-classification_form" action="/inv/add-classification" method="post">
+          <label for="classification_name_input">Classification Name:</label>
+          <br>
+          <span class="classificacion_name_indication"> The name must contain only alphabetic characters.</span>
+          <br>
+          <input type="text" name="classification_name" id="classification_name_input" pattern="[A-Za-z]*" id="accountFirstname" required value="<%= locals.classification_name %>">
+          <br>
+          
+          <div class= "submit_form" >
+            <input type="submit" value="Add name classification" />
+          </div>
+        </form>
+           
+            
+          </div>
+          <br>
+    </div>
+    
+    
+    

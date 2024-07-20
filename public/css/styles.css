@@ -165,7 +165,7 @@ header a {
   }
 
 
-  .page_login, .page_register {
+  .page_login, .page_register, .page_add-classification {
     margin: 10px 50px 20px;
     background-color: aqua;
     border: 3px solid rgb(15, 15, 15);
@@ -181,7 +181,7 @@ header a {
     
     
   }
-  .login_form, .register_form{
+  .login_form, .register_form, .add-classification_form{
     margin: 10% 25% 10%;
     
     width: 200px;
@@ -210,6 +210,10 @@ header a {
 
     .pass_indication{
       font-size: medium;
+    }
+
+    .message{
+      color:red;
     }
 
 @media only screen and (min-width:720px) {
