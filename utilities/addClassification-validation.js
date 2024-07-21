@@ -16,7 +16,7 @@ validate.nameClassificationRules = () => {
         .withMessage("Please provide a name classification.")
         .isAlpha().withMessage("Only alphabetic charaters")
         .custom(async (classification_name) => {
-            console.log (" the value of classification name: " + classification_name)
+            //console.log (" the value of classification name: " + classification_name)
             const nameClassificationExists = await inventoryModel.checkExistingClassification(classification_name)
             if (nameClassificationExists){
                 throw new Error("Name exists. Please only add different name that already exist")
@@ -36,7 +36,7 @@ validate.checkaddClassificationData = async (req, res, next) => {
     errors = validationResult(req)
     if (!errors.isEmpty()) {
       let nav = await utilities.getNav()
-         console.log(" There here Errors")
+         //console.log(" There here Errors")
         res.render("inventory/add-classification", {
         errors,
         title: "Add Classification",

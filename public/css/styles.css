@@ -165,7 +165,7 @@ header a {
   }
 
 
-  .page_login, .page_register, .page_add-classification {
+  .page_login, .page_register, .page_add-classification, .page_add-vehicle {
     margin: 10px 50px 20px;
     background-color: aqua;
     border: 3px solid rgb(15, 15, 15);
@@ -173,7 +173,7 @@ header a {
     text-align: center;
     
   }
-  .div_login, .div_register{
+  .div_login, .div_register, .div_add-inventory{
     margin: 10% 5% 10%;
     border: 20px solid rgb(32, 25, 25);
     background-color: #333;
@@ -181,7 +181,7 @@ header a {
     
     
   }
-  .login_form, .register_form, .add-classification_form{
+  .login_form, .register_form, .add-classification_form, .add-inventory_form{
     margin: 10% 25% 10%;
     
     width: 200px;
@@ -214,6 +214,29 @@ header a {
 
     .message{
       color:red;
+    }
+
+    #inventoryDisplay{
+      font-family: Arial;
+      border-collapse: collapse;
+      width: 80%;
+    }
+    
+    #inventoryDisplay td, #inventoryDisplay th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    #inventoryDisplay tr:nth-child(even){background-color: #f2f2f2;}
+    
+    #inventoryDisplay tr:hover {background-color: #ddd;}
+    
+    #inventoryDisplay th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #0037ff;
+      color: white;
     }
 
 @media only screen and (min-width:720px) {

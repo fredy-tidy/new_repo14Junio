@@ -20,11 +20,18 @@ async function getClassifications(){
   }
 }
 
-
-
-
-
-
+/* **************************
+*  Register New Vehicle in the inventory table 
+* ************************** */
+async function addNewVehicle(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id){
+  console.log(" Entry in models addNewVehicle, and do the query")  
+  try {
+      const sql = "INSERT INTO inventory (inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *"
+      return await pool.query(sql, [inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id])
+    } catch (error) {
+      return error.message
+    }
+  }
 
 
 /* ***************************
@@ -64,5 +71,5 @@ async function addClassificationName(classification_name){
 
 
 
-module.exports = {getClassifications, getInventoryByClassificationId,checkExistingClassification, addClassificationName};
+module.exports = {getClassifications, getInventoryByClassificationId,checkExistingClassification, addClassificationName, addNewVehicle};
 /* module.exports = {getClassifications} */

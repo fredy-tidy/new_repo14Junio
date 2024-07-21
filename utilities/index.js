@@ -11,7 +11,7 @@ require("dotenv").config()
  ************************** */
 Util.getNav = async function (req, res, next){
   let data = await invModel.getClassifications()
-  console.log(data)
+  //console.log(data)
   let list = "<ul>"
   list += '<li><a href="/" title="Home page">Home</a></li>'
   data.rows.forEach((row) => {
@@ -157,6 +157,7 @@ Util.buildClassificationList = async function (classification_id = null) {
     '<select name="classification_id" id="classificationList" required>'
   classificationList += "<option value=''>Choose a Classification</option>"
   data.rows.forEach((row) => {
+    //console.log("Names in clasification: "+row.classification_name)
     classificationList += '<option value="' + row.classification_id + '"'
     if (
       classification_id != null &&
