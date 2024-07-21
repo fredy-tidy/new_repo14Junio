@@ -41,4 +41,7 @@ router.get("/add-inventory", utilities.checkLogin, utilities.handleErrors(invCon
 //Select Inventory Items
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
+router.get("/edit/:inv_id", utilities.checkLogin,utilities.handleErrors(invController.editInventoryView) )
+
+
 module.exports = router;
