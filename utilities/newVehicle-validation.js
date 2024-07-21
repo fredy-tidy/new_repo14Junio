@@ -122,5 +122,66 @@ validate.checkVehicleData = async (req, res, next) => {
     next()
   }
 
+/* *************************
+* Validate for update
+* ******************** */
+validate.checkUpdateData = async (req, res, next) => {
+    const { inv_make, 
+            inv_model, 
+            inv_year, 
+            inv_description, 
+            inv_image, 
+            inv_thumbnail, 
+            inv_price, 
+            inv_miles, 
+            inv_color, 
+            classification_id,
+            inv_id } = req.body
+
+      console.log( " Recibe Data:" + inv_make + " - " + inv_model+ " - " +
+        inv_year+ " - " +
+        inv_description+ " - " + 
+        inv_image+ " - " +
+        inv_thumbnail+ " - " +
+        inv_price+ " - " +
+        inv_miles+ " - " +
+        inv_color+ " - " +
+        classification_id )
+
+    let errors = []
+    errors = validationResult(req)
+       //console.log ( " Los Errores son: " + errors)
+
+    if (!errors.isEmpty()) {
+        
+      let nav = await utilities.getNav()
+      let classificationList = await utilities.buildClassificationList()
+      //console.log ( " recupero la lista " + errors)
+        res.render("inventory/edit-inventory", {
+        errors,
+        title: inv_make + " " + inv_model,
+        nav,
+        classificationList,
+        inv_make, 
+            inv_model, 
+            inv_year, 
+            inv_description, 
+            inv_image, 
+            inv_thumbnail, 
+            inv_price, 
+            inv_miles, 
+            inv_color, 
+            classification_id,
+            inv_id,
+             
+        
+      })
+      return
+    }
+    next()
+  }
+
+
+
 
   module.exports = validate

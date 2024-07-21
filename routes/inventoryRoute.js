@@ -43,5 +43,9 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 
 router.get("/edit/:inv_id", utilities.checkLogin,utilities.handleErrors(invController.editInventoryView) )
 
+router.post("/update/", utilities.checkLogin, 
+    newVehicleValidate.newVehicleRules(), 
+    newVehicleValidate.checkUpdateData,
+    utilities.handleErrors(invController.updateInventory))
 
 module.exports = router;

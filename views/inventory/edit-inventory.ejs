@@ -18,7 +18,7 @@
         
         <div class="div_edit-inventory">
          
-        <form class="edit-inventory_form" action="/inv/update" method="post">
+        <form id="updateForm" class="edit-inventory_form" action="/inv/update" method="post">
           <label for="classificationList">Classification:</label>
           <br>
           <%- classificationList %>
@@ -68,8 +68,12 @@
           <br>
           <input type="text" name="inv_color" id="color_vehicle" required value="<%= locals.inv_color %>">
           <br>
+          <input type="hidden" name="inv_id"
+             <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+          <% } %>>
           <div class= "submit_form" >
-            <input type="submit" name="submit" value="Update Vehicle" />
+            <input id="submit_input"type="submit" name="submit" value="Update Vehicle" disabled />
+            
           </div>
         </form>
            
