@@ -1,0 +1,60 @@
+<div class="page_delete-vehicle"> 
+
+    <% if (title) { %>
+        <h1><%- title %></h1>
+        
+        <% } else {
+          res.redirect('/')
+        } %>
+        
+        <% messages() %>
+
+        <% if (errors) { %>
+          <ul class="notice">
+         <% errors.array().forEach(error => { %>
+           <li><%= error.msg %></li>
+        <%  }) %>
+         </ul>
+        <% } %>
+        
+        <div class="div_delete-inventory">
+          <p>Confirm Deletion - The delete is permanent.</p>
+
+        <form id="deleteForm" class="delete-inventory_form" action="/inv/delete" method="post">
+          
+          <!-- inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id       -->
+          <br>
+          <label for="make_vehicle">Make</label>
+          <br>
+          <input type="text" placeholder="Min of 3 characters" name="inv_make" id="make_vehicle" minlength="3" readonly value="<%= locals.inv_make %>">
+          <br>
+          <br>
+          <label for="model_vehicle">Model</label>
+          <br>
+          <input type="text" placeholder="Min of 3 characters" name="inv_model" id="model_vehicle" minlength="3" readonly value="<%= locals.inv_model %>">
+          <br>
+          <!-- inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id       -->
+          <label for="year_vehicle">Year</label>
+          <br>
+          <input type="text" placeholder="4 digits" name="inv_year" id="year_vehicle" pattern="\d{4}" readonly value="<%= locals.inv_year %>">
+          <br>
+          <label for="price_vehicle">Price</label>
+          <br>
+          <input type="number" placeholder="decimal or integer" step="0.01" name="inv_price" id="price_vehicle" readonly value="<%= locals.inv_price %>">
+          <br>
+          
+          <input type="hidden" name="inv_id"
+             <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+          <% } %>>
+          <div class= "submit_form" >
+            <input id="submit_input"type="submit" name="submit" value="Delete item" />
+            
+          </div>
+        </form>
+                  
+          </div>
+          <br>
+    </div>
+    
+    
+    

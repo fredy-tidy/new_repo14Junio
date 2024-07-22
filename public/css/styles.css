@@ -165,7 +165,7 @@ header a {
   }
 
 
-  .page_login, .page_register, .page_add-classification, .page_add-vehicle, .page_edit-vehicle {
+  .page_login, .page_register, .page_add-classification, .page_add-vehicle, .page_edit-vehicle, .page_delete-vehicle {
     margin: 10px 50px 20px;
     background-color: aqua;
     border: 3px solid rgb(15, 15, 15);
@@ -173,14 +173,14 @@ header a {
     text-align: center;
     
   }
-  .div_login, .div_register, .div_add-inventory, .div_edit-inventory {
+  .div_login, .div_register, .div_add-inventory, .div_edit-inventory, .div_delete-inventory {
     margin: 10% 5% 10%;
     border: 20px solid rgb(32, 25, 25);
     background-color: #333;
     color:white;
       
   }
-  .login_form, .register_form, .add-classification_form, .add-inventory_form, .edit-inventory_form{
+  .login_form, .register_form, .add-classification_form, .add-inventory_form, .edit-inventory_form, .deleteForm{
     margin: 10% 25% 10%;
     
     width: 200px;

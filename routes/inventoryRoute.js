@@ -48,4 +48,10 @@ router.post("/update/", utilities.checkLogin,
     newVehicleValidate.checkUpdateData,
     utilities.handleErrors(invController.updateInventory))
 
+router.get("/delete/:inv_id", utilities.checkLogin, utilities.handleErrors(invController.deleteInventoryView))
+
+router.post("/delete/", utilities.checkLogin, utilities.handleErrors(invController.deleteInventory))
+
+
+
 module.exports = router;
