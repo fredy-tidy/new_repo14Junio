@@ -8,7 +8,7 @@
         } %>
     
     
-        <% messages() %>
+        <%- messages() %>
     
         <% if (errors) { %>
           <ul class="notice">
@@ -17,8 +17,11 @@
         <%  }) %>
          </ul>
         <% } %>
-        <p>
-            "You're logged in".
+        <p id="welcome">
+          
         </p>
+        <noscript>JavaScript must be enabled to use this page.</noscript>
+     
+    <script src="../../js/account-management.js"></script>
         </div>
       

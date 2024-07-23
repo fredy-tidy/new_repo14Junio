@@ -24,6 +24,7 @@
 
  // Build inventory items into HTML table components and inject into DOM 
 function buildInventoryList(data) { 
+    console.log("imprimiento keys"+ Object.keys(data))
     let inventoryDisplay = document.getElementById("inventoryDisplay"); 
     // Set up the table labels 
     let dataTable = '<thead>'; 

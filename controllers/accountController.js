@@ -1,6 +1,7 @@
 // Require Statements
-const utilities = require("../utilities/")
 const accountModel = require("../models/account-model")
+const utilities = require("../utilities/")
+
 const accountController = {}
 // Password hash
 const bcrypt = require("bcryptjs")
@@ -126,12 +127,101 @@ accountController.registerAccount = async function (req, res) {
 *  Deliver login view
 * *************************************** */
 accountController.buildManagement = async function (req, res, next) {
-  let nav = await utilities.getNav()
-  res.render("account/account-management", {
+  let nav = await utilities.getNav();
+
+  res.render("./account/account-management", {
     title: "Account management view",
     nav,
     errors:null,
   })
 }
+
+/* *************************************
+*  Retun the view Account Update
+* ************************************ */
+accountController.updateView = async function (req, res, next) {
+  const account_id = parseInt(req.params.account_id)
+  let nav = await utilities.getNav();
+  const accountData = await accountModel.getAccountById(account_id)
+  //let welcome = await utilities.getWelcome();
+  res.render("./account/update-account", {
+    title: "Update account",
+    nav,
+    account_id : accountData.account_id,
+    account_firstname : accountData.account_firstname,
+    account_lastname : accountData.account_lastname,
+    account_email : accountData.account_email,
+    errors:null,
+  })
+}
+
+accountController.updateAccount = async function (req, res, next) {
+  const {
+    account_id, 
+    account_firstname,  
+    account_lastname, 
+    account_email, 
+     } = req.body 
+
+     const updateAccountResult = await accountModel.updateAccount( 
+      account_id, 
+      account_firstname,  
+      account_lastname, 
+      account_email)
+
+let nav = await utilities.getNav()
+const itemName = updateAccountResult.account_firstname + " " + updateAccountResult.account_lastname
+  
+if (updateAccountResult) {
+  req.flash("notice", ` ${itemName} your account was successfully updated.`)
+  res.redirect("/account/")
+} else {
+  req.flash("notice", "Sorry, the update failed.")
+  res.status(501).render("account/update-account", {
+  title: "Update " + itemName,
+  nav,
+  errors: null,
+  account_id, 
+  account_firstname,  
+  account_lastname, 
+  account_email
+  })
+}
+}
+
+/*
+  invCont.addNewVehicle = async function (req, res) {
+    
+    
+  
+   let nav = await utilities.getNav()
+ 
+ if (addNewVehicleResult) {
+  
+  const classificationSelect = await utilities.buildClassificationList()
+     req.flash(
+       "notice",
+       'Congratulations, you\'re add a new vehicle that is model: '+inv_model+'.'
+    )
+     res.render("./inventory/management", {
+       title: "Management",
+       nav,
+       errors:null,
+       classificationSelect
+     })
+    
+   } else {
+    let classificationList = await utilities.buildClassificationList()
+     req.flash("notice", "Sorry, add new Vehicle name failed.")
+     res.status(501).render("./inventory/add-inventory", {
+       title: "Add New Vehicle",
+       nav,
+       errors: null,
+       classificationList,
+       classificationSelected:null,
+    })
+   }
+}
+*/
 
   module.exports = accountController

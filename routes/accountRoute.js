@@ -1,8 +1,9 @@
 // Needed Resources 
+const utilities = require("../utilities")
 const express = require("express")
 const router = new express.Router() 
 const accountController = require("../controllers/accountController")
-const utilities = require("../utilities")
+
 // server side data validation 
 const regValidate = require('../utilities/account-validation')
 // Add a "GET" route for the path that will be sent when the "My Account"
@@ -13,7 +14,7 @@ const regValidate = require('../utilities/account-validation')
 
 // Route to build login view
 router.get("/login",utilities.handleErrors(accountController.buildLogin))
-router.get("/register",utilities.handleErrors( accountController.buildRegister ))
+router.get("/register",utilities.handleErrors( accountController.buildRegister ));
 //router.post('/register', utilities.handleErrors(accountController.registerAccount))
 //router.get("/",utilities.handleErrors(accountController.buildAccount))
 //Data validation
@@ -33,12 +34,21 @@ router.post(
 router.post(
     "/login",regValidate.loginRules(),
     regValidate.checkLoginData,
-    utilities.handleErrors(accountController.accountLogin)
-    //(req, res) => {
-    // res.status(200).send('login process')
+    utilities.handleErrors(accountController.accountLogin),
+   // (req, res) => {
+   // res.status(200).send('login process')
    //},
     
     )
+router.get("/userLogged", utilities.handleErrors(utilities.userLoggedTestJSON))
+
+router.get("/logout", utilities.handleErrors(utilities.userLogout))
+
+router.get("/getWelcome", utilities.handleErrors(utilities.getWelcome))
+
+router.get("/update/:account_id", utilities.checkLogin, utilities.handleErrors(accountController.updateView))
+
+router.post("/update", utilities.checkLogin, utilities.handleErrors(accountController.updateAccount))
 
 module.exports = router
 

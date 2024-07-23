@@ -15,7 +15,10 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 // add week 03
 router.get("/detail/:inv_id", detailController.buildByInvId);
 
-router.get("/", utilities.checkLogin, invController.buildManagementView)
+// Here for check administrator or anoter tipe
+
+
+router.get("/", utilities.checkLoginEmployeeAdmin, invController.buildManagementView)
 // Week 04 activity 4
 // Add Clasification
 router.get("/add-classification", utilities.checkLogin, utilities.handleErrors(invController.buildAddClassification))
@@ -51,7 +54,6 @@ router.post("/update/", utilities.checkLogin,
 router.get("/delete/:inv_id", utilities.checkLogin, utilities.handleErrors(invController.deleteInventoryView))
 
 router.post("/delete/", utilities.checkLogin, utilities.handleErrors(invController.deleteInventory))
-
 
 
 module.exports = router;

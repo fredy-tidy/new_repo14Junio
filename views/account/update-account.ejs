@@ -1,0 +1,68 @@
+<div class="page_register"> 
+
+
+<% if (title) { %>
+    <h1><%- title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+
+    <%- messages() %>
+
+
+
+
+    <% if (errors) { %>
+      <ul class="notice">
+     <% errors.array().forEach(error => { %>
+       <li><%= error.msg %></li>
+    <%  }) %>
+     </ul>
+    <% } %>
+
+
+
+    <div class="div_register">
+    <form class="update_form" action="/account/update" method="post">
+      <label for="accountFirstname">First name:</label>
+      <br>
+      <input type="text" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>">
+      <br>
+      <label for="last_name_input">Last name:</label>
+        <br>
+        <input type="text" id="last_name_input" name="account_lastname" required value="<%= locals.account_lastname %>">
+        <br>
+        <label for="email_input">Email:</label>
+        <br>
+        <input type="email" id="email_input" name="account_email" required placeholder="Enter a valid email address" required value="<%= locals.account_email %>">
+        <br>
+        <input type="hidden" name="account_id"
+             <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+          <% } %>>
+        <div class= "submit_form" >
+        <input type="submit" value="Update Account" />
+        </div>
+      </form>
+      </div>
+      <div class="div_register">
+      <form class="change-pass_form" action="/account/change-pass" method="post">
+     
+        <label for="accountPassword">Password:</label> 
+        <br>
+        <input type="password" name="account_password" id="accountPassword" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" placeholder="12 characters">
+       
+        <br>
+        <span class="pass_indication">Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter, 1 lower case and 1 special character</span> 
+        <br>
+        <div class= "submit_form" >
+        <input type="submit" value="Change Password"/>
+      </div>
+    </form>
+       
+        
+      </div>
+      <br>
+</div>
+
+

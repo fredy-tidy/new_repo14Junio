@@ -1,7 +1,9 @@
 const invModel = require("../models/inventory-model")
+
 const Util = {}
 // Check the JWT
 const jwt = require("jsonwebtoken")
+
 require("dotenv").config()
 
 
@@ -11,6 +13,7 @@ require("dotenv").config()
  ************************** */
 Util.getNav = async function (req, res, next){
   let data = await invModel.getClassifications()
+  
   //console.log(data)
   let list = "<ul>"
   list += '<li><a href="/" title="Home page">Home</a></li>'
@@ -132,24 +135,24 @@ Util.checkLogin = (req, res, next) => {
     next()
   } else {
     req.flash("notice", "Please log in.")
-    return res.redirect("/account/login")
+    res.redirect("/account/login")
   }
  }
 
  /* ****************************************
- *  Check Login
+ *  Build Classification List
  * ************************************ */
-Util.buildClassificationList_prev = async function() {
-  let data = await invModel.getClassifications()
+//Util.buildClassificationList_prev = async function() {
+//  let data = await invModel.getClassifications()
 
-  let select_ = ' <select name="classificationList" id="pet-select"> '
-  select_ +='<option value="">--Choose a Classification--</option>'
-  data.rows.forEach((row) => {
-    select_ += '<option value="'+row.classification_id +'">'+ row.classification_name +'</option>'
-  })
-  select_ +='</select>'
-  return select_
-}
+//  let select_ = ' <select name="classificationList" id="pet-select"> '
+//  select_ +='<option value="">--Choose a Classification--</option>'
+//  data.rows.forEach((row) => {
+//    select_ += '<option value="'+row.classification_id +'">'+ row.classification_name +'</option>'
+//  })
+//  select_ +='</select>'
+//  return select_
+//}
 
 Util.buildClassificationList = async function (classification_id = null) {
   let data = await invModel.getClassifications()
@@ -170,6 +173,80 @@ Util.buildClassificationList = async function (classification_id = null) {
   classificationList += "</select>"
   return classificationList
 }
+
+
+/* ****************************************
+ *  Add logout in header
+ * ************************************ */
+Util.userlogged = (req, res, next) => {
+  let data = 0
+  if(res.locals.loggedin){
+  console.log ( "user logged: "+ res.locals.loggedin )
+    data = 1
+  } else {
+   console.log(" aún no estas logeado")
+  }
+}
+  Util.userLoggedTestJSON = async (req, res, next) => {
+     let logged = 0
+    if(res.locals.loggedin){
+         logged = 1
+    }
+   
+       
+        //   if (data[0].login) {
+       return res.json({ login: logged })
+    //   } else {
+    //     next(new Error("No data returned"))
+    //   }
+    }
+    
+    Util.userLogout = async(req, res, next) => {
+        res.clearCookie("jwt");
+        res.redirect("/");
+      
+      }
+
+
+     //Document.cookie = cname + '=""'+ ";" + -1 + ";path=/";
+    
+  /* ****************************************
+ *  Check Login
+ * ************************************ */
+Util.checkLoginEmployeeAdmin = async (req, res, next) => {
+   
+  if (res.locals.loggedin) {
+    if ((res.locals.accountData.account_type == "Employee") || (res.locals.accountData.account_type == "Admin")) {
+          //console.log(" I'm "+res.locals.accountData.account_type + " entry /inv" )
+      next()
+    } else {
+      req.flash("notice","You are not have authorization, login as Employee or Admin")
+      return res.redirect("/account/login")
+    }
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
+/* ****************************************
+ *  return welcome element
+ * ************************************ */
+  Util.getWelcome = async function (req, res, next){
+    let welcome = ""
+    if(res.locals.loggedin){
+      welcome += "<h2>  Welcome "+ res.locals.accountData.account_firstname +"</h2>"
+      welcome += "<h2> You are login! </h2>"  
+       if (res.locals.accountData.account_type == 'Client'){
+        welcome += '<p> <a href="/account/update/'+res.locals.accountData.account_id+'" > Update Account Information </a></p>'
+         } else {
+        welcome += '<p> <a href="/account/update/'+res.locals.accountData.account_id+'" > Update Account Information </a></p> '     
+        welcome += '<h3> Inventory Management </h3>' 
+        welcome += '<p><a href="/inv/" > Inventory Management </a></p>'
+    }
+   }
+    return res.json({tags:welcome})
+  } 
+
 
 
 module.exports = Util

@@ -89,7 +89,7 @@ app.use("/rigths",async ( req, res, next) => {
   })
 } )
 
-app.use("/account/",accountRoute)
+//app.use("/account/",accountRoute)
 
 
 // File Not Found Route - must be last route in list
@@ -122,6 +122,19 @@ app.use(async (err, req, res, next) => {
   })
 })
 
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav()
+  console.error()
+  res.render("errors/error", {
+    title: err.status || 'Server Error',
+    message: err.message,
+    nav
+  })
+})
+
+
+
+
 
 
 /* ***********************
@@ -130,4 +143,6 @@ app.use(async (err, req, res, next) => {
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
+
+
 
