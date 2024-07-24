@@ -189,6 +189,49 @@ if (updateAccountResult) {
 }
 }
 
+/* *************************************
+*  Update Password 
+* ************************************ */
+accountController.updatePassword = async function (req, res, next) {
+  const {
+    account_id, 
+    account_password,   
+     } = req.body 
+
+//let nav = await utilities.getNav()
+// const itemName = updatePasswordResult.account_firstname + " " + updateAccountResult.account_lastname
+    let hashedPassword
+    try {
+      // regular password and cost (salt is generated automatically)
+      hashedPassword = await bcrypt.hashSync(account_password, 10)
+    } catch (error) {
+      req.flash("notice", 'Sorry, there was an error processing the registration.')
+      res.status(500).render("account/update/"+account_id)
+    }
+    
+    const updatePasswordResult = await accountModel.updatePassword( 
+      account_id, 
+      hashedPassword)
+
+if (updatePasswordResult) {
+  req.flash("notice", "Your Password was successfully updated.")
+  res.redirect("/account/")
+} else {
+  let data = accountModel.getAccountById(account_id)
+  let  accountName = data.account_firstname + " " + data.account_lastname
+  req.flash("notice", "Sorry, the update password failed.")
+  res.status(501).render("account/update-account", {
+  title: "Update " + accountName,
+  nav,
+  errors: null,
+  account_id, 
+  account_firstname: data.account_firstname,  
+  account_lastname: data.account_lastname, 
+  account_email: data.account_email,
+  })
+}
+}
+
 /*
   invCont.addNewVehicle = async function (req, res) {
     

@@ -10,6 +10,7 @@ const nameClassificationValidate = require('../utilities/addClassification-valid
 
 const newVehicleValidate = require("../utilities/newVehicle-validation")
 // Route to build inventory by classification view
+
 router.get("/type/:classificationId", invController.buildByClassificationId);
 
 // add week 03

@@ -3,6 +3,7 @@ const utilities = require("../utilities")
 const express = require("express")
 const router = new express.Router() 
 const accountController = require("../controllers/accountController")
+const updateAccountValidate = require("../utilities/update_account-validation")
 
 // server side data validation 
 const regValidate = require('../utilities/account-validation')
@@ -48,7 +49,18 @@ router.get("/getWelcome", utilities.handleErrors(utilities.getWelcome))
 
 router.get("/update/:account_id", utilities.checkLogin, utilities.handleErrors(accountController.updateView))
 
-router.post("/update", utilities.checkLogin, utilities.handleErrors(accountController.updateAccount))
+router.post("/change-pass", 
+  utilities.checkLogin,
+  updateAccountValidate.updatePasswordRules(),
+  updateAccountValidate.checkChangePassData,
+  utilities.handleErrors(accountController.updatePassword)
+ )
+
+router.post("/update",
+   utilities.checkLogin,
+   updateAccountValidate.updateAccountRules(),
+   updateAccountValidate.checkUpdateAccountData,
+   utilities.handleErrors(accountController.updateAccount))
 
 module.exports = router
 

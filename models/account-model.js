@@ -25,6 +25,17 @@ async function checkExistingEmail(account_email){
     return error.message
   }
 }
+
+async function checkExistingEmailOthersAccounts(account_email, account_id){
+  try {
+    const sql = "SELECT * FROM account WHERE (account_email = $1 AND account_id != $2)"
+    const email = await pool.query(sql, [account_email, account_id])
+    return email.rowCount
+  } catch (error) {
+    return error.message
+  }
+
+}
 /* *****************************
 * Return account data using email address
 * ***************************** */
@@ -79,7 +90,23 @@ async function updateAccount (
   }
 }
 
+async function updatePassword( 
+  account_id, 
+  hashedPassword
+  ) {
+  try {
+    const sql =
+      "UPDATE public.account SET account_password= $1 WHERE account_id = $2 RETURNING *"
+    const data = await pool.query(sql, [
+      hashedPassword,
+      account_id
+    ])
+    return data.rows[0]
+  } catch (error) {
+    console.error("model error: " + error)
+  }
+
+}
 
 
-
-  module.exports = {registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount}
+  module.exports = {registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, updatePassword, checkExistingEmailOthersAccounts}
