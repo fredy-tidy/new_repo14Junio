@@ -260,7 +260,7 @@ accountController.add_comment = async function (req, res, next) {
       comments_text
     )
     if (registerCommentsResult) {
-      req.flash("notice", `your commens was successfully register.`)
+      req.flash("notice", `your comment was successfully register.`)
       res.redirect("/account/")
     } else {
       req.flash("notice", "Sorry, the update failed.")
