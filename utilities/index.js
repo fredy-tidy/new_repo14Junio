@@ -1,4 +1,6 @@
+const { getNameByID } = require("../models/account-model")
 const invModel = require("../models/inventory-model")
+const accountModel = require("../models/account-model")
 
 const Util = {}
 // Check the JWT
@@ -190,6 +192,7 @@ Util.userlogged = (req, res, next) => {
   Util.userLoggedTestJSON = async (req, res, next) => {
      let logged = 0
     if(res.locals.loggedin){
+        //console.log( " logged in: "+ res.locals.loggedin)
          logged = 1
     }
    
@@ -200,6 +203,12 @@ Util.userlogged = (req, res, next) => {
     //     next(new Error("No data returned"))
     //   }
     }
+
+    // Improve ADD
+    Util.userType = async (req, res, next) => {
+      let user_type = res.locals.accountData.account_type
+      return req.json({usertype: "Client"})
+     }
     
     Util.userLogout = async(req, res, next) => {
         res.clearCookie("jwt");
@@ -242,11 +251,46 @@ Util.checkLoginEmployeeAdmin = async (req, res, next) => {
         welcome += '<p> <a href="/account/update/'+res.locals.accountData.account_id+'" > Update Account Information </a></p> '     
         welcome += '<h3> Inventory Management </h3>' 
         welcome += '<p><a href="/inv/" > Inventory Management </a></p>'
-    }
-   }
+         }
+         welcome += '<h3> Add Comments </h3>'   
+        welcome += '<p> <a href="/account/add_comments/'+res.locals.accountData.account_id+'" > add comments </a></p>'
+        if(res.locals.accountData.account_type == 'Admin'){
+          welcome += '<p> <a href="/account/view_comments/" > view comments </a></p>'
+       
+        }
+      }
     return res.json({tags:welcome})
   } 
+/* ****************
+*  get Table Comments
+* ***************/
+  Util.getTableComments = async function (req, res, next){
+    let data = await accountModel.getComments()
+     // Set up the table labels 
+    let dataTable = '<thead>'; 
+    dataTable += '<tr><th>User</th><th>Email</th><th>Comment</th></tr>'; 
+    dataTable += '</thead>'; 
+    // Set up the table body 
+    dataTable += '<tbody>'; 
+    //  data.rows.forEach((row) => {Iterate over all vehicles in the array and put each in a row 
+    data.rows.forEach(function (element) {   
+     dataTable += '<tr><td>'+element.account_firstname+'</td>'; 
+     dataTable += '<td>'+element.account_email+'</td>'; 
+     dataTable += '<td>'+element.comments_text+'</td></tr>'; 
+    }) 
+    dataTable += '</tbody>'; 
+    // Display the contents in the Inventory Management view 
+    return dataTable; 
+   }
 
+  Util.isAdmin = async function (req, res, next){
+    let admin=0
+    if(res.locals.accountData.account_type == "Admin"){
+      admin = 1
+    }
+     return admin
+
+   }
 
 
 module.exports = Util

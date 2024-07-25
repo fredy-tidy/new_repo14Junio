@@ -4,7 +4,7 @@ const express = require("express")
 const router = new express.Router() 
 const accountController = require("../controllers/accountController")
 const updateAccountValidate = require("../utilities/update_account-validation")
-
+const commentsValidate = require("../utilities/message_validaton")
 // server side data validation 
 const regValidate = require('../utilities/account-validation')
 // Add a "GET" route for the path that will be sent when the "My Account"
@@ -61,6 +61,25 @@ router.post("/update",
    updateAccountValidate.updateAccountRules(),
    updateAccountValidate.checkUpdateAccountData,
    utilities.handleErrors(accountController.updateAccount))
+
+   router.get("/userType", utilities.handleErrors(utilities.userLoggedTestJSON))
+
+
+router.get("/add_comments/:account_id",
+    utilities.checkLogin,
+    utilities.handleErrors(accountController.add_commentView))
+
+router.post("/add_comments/",
+  utilities.checkLogin,
+  commentsValidate.commentsRules(),
+  commentsValidate.checkCommentData,
+  utilities.handleErrors(accountController.add_comment)
+)
+
+router.get("/view_comments/",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.viewComments)
+)
 
 module.exports = router
 

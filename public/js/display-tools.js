@@ -1,6 +1,6 @@
 'use strict' 
 //const utilities = require("../../utilities")
-     console.log(" entry in display tools")
+    // console.log(" entry in display tools")
      
     
     //if (res.locals.loggedin) {
@@ -24,6 +24,9 @@
          .catch(function (error) { 
         console.log('There was a problem: ', error.message) 
          }) 
+    
+
+         
     // ////////////////
        function display_tools(data){
            let toolsDisplay = document.querySelector("#tools")
@@ -36,6 +39,7 @@
            toolsDisplay.innerHTML = links
     
           }
-        
+    
+    
       
  

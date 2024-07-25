@@ -1,0 +1,31 @@
+<div page_add_comments>
+<% if (title) { %>
+    <h1><%- title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+
+    <%- messages() %>
+
+    <% if (errors) { %>
+      <ul class="notice">
+     <% errors.array().forEach(error => { %>
+       <li><%= error.msg %></li>
+    <%  }) %>
+     </ul>
+    <% } %>
+    <form class="comments_form" id="commentsForm" action="/account/add_comments" method="post">
+        <label for="txt_comments_input">Add comments:</label>
+        <textarea name="comments_text" rows="3" id="txt_comment_input" required value="<%= locals.commments_text %>"></textarea>
+        <br>
+        <input type="hidden" name="account_id"
+          <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+       <% } %>>  
+        <div class= "submit_form" >
+        <input type="submit" value="Add Comment" />
+      </div>
+    </form>
+</div>    
+
+    

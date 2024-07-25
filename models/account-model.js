@@ -89,7 +89,9 @@ async function updateAccount (
     console.error("model error: " + error)
   }
 }
-
+/* **************
+*  Update password in account
+* ********** */ 
 async function updatePassword( 
   account_id, 
   hashedPassword
@@ -107,6 +109,57 @@ async function updatePassword(
   }
 
 }
+/* ***********
+*
+* ************ */
+async function registerComments( account_id, comments_text){
+  try {
+    let id = parseInt(account_id)
+    const sql = "INSERT INTO comments (account_id, comments_text) VALUES ($1, $2) RETURNING *"
+    return await pool.query(sql, [id, comments_text])
+  } catch (error) {
+    return error.message
+  }
+}
+
+/*  ***************
+*  get Commets 
+* ************ */
+async function getComments(){
+  return await pool.query("SELECT * FROM public.comments AS c JOIN public.account AS a ON c.account_id = a.account_id ORDER BY account_firstname")
+}
+
+async function getNameByID(account_id){
+  try {
+    const data = await pool.query(
+      `SELECT account_firstname FROM public.account 
+      WHERE account_id = $1`,
+      [account_id]
+    )
+    return data.rows[0]
+  } catch (error) {
+    console.error("getAccountById error: " + error)
+  }
+}
+
+/* ***********
+*  get Email from account by ID
+* *********** */
+async function getEmailByID(account_id){
+  try {
+    const data = await pool.query(
+      `SELECT account_email FROM public.account 
+      WHERE account_id = $1`,
+      [account_id]
+    )
+    return data.rows[0]
+  } catch (error) {
+    console.error("getAccountById error: " + error)
+  }
+}
 
 
-  module.exports = {registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, updatePassword, checkExistingEmailOthersAccounts}
+
+
+
+  module.exports = {registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, updatePassword, checkExistingEmailOthersAccounts, registerComments, getComments, getNameByID, getEmailByID}

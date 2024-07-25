@@ -97,6 +97,7 @@ accountController.registerAccount = async function (req, res) {
   let nav = await utilities.getNav()
   const { account_email, account_password } = req.body
   const accountData = await accountModel.getAccountByEmail(account_email)
+  //console.log( " account Data" + accountData)
   if (!accountData) {
    req.flash("notice", "Please check your credentials and try again.")
    res.status(400).render("account/login", {
@@ -105,7 +106,7 @@ accountController.registerAccount = async function (req, res) {
     errors: null,
     account_email,
    })
-  return
+    return 
   }
   try {
    if (await bcrypt.compare(account_password, accountData.account_password)) {
@@ -232,39 +233,55 @@ if (updatePasswordResult) {
 }
 }
 
-/*
-  invCont.addNewVehicle = async function (req, res) {
-    
-    
-  
-   let nav = await utilities.getNav()
- 
- if (addNewVehicleResult) {
-  
-  const classificationSelect = await utilities.buildClassificationList()
-     req.flash(
-       "notice",
-       'Congratulations, you\'re add a new vehicle that is model: '+inv_model+'.'
-    )
-     res.render("./inventory/management", {
-       title: "Management",
-       nav,
-       errors:null,
-       classificationSelect
-     })
-    
-   } else {
-    let classificationList = await utilities.buildClassificationList()
-     req.flash("notice", "Sorry, add new Vehicle name failed.")
-     res.status(501).render("./inventory/add-inventory", {
-       title: "Add New Vehicle",
-       nav,
-       errors: null,
-       classificationList,
-       classificationSelected:null,
-    })
-   }
+/* ********
+*
+* ******** */
+accountController.add_commentView = async function (req, res, next) {
+  const account_id = parseInt(req.params.account_id)
+  let nav = await utilities.getNav();
+  res.render("./account/add_comments", {
+    title: "add_comments",
+    nav,
+    account_id, 
+    errors:null,
+  })
 }
-*/
 
-  module.exports = accountController
+/* ********
+*
+* ******** */
+accountController.add_comment = async function (req, res, next) {
+  const {
+    account_id, 
+    comments_text,   
+     } = req.body 
+     const registerCommentsResult = await accountModel.registerComments(
+      account_id, 
+      comments_text
+    )
+    if (registerCommentsResult) {
+      req.flash("notice", `your commens was successfully register.`)
+      res.redirect("/account/")
+    } else {
+      req.flash("notice", "Sorry, the update failed.")
+      res.status(501).render("account/add_comments", {
+      title: "Add comments ",
+      nav,
+      errors: null,
+      
+      })
+    }
+}
+
+accountController.viewComments = async function (req, res, next){
+  let nav = await utilities.getNav()
+  let tableDisplay = await utilities.getTableComments()
+  res.render("./account/view_comments", {
+    title: "View Comments",
+    nav,
+    tableDisplay,
+    errors:null,
+  })
+}
+
+module.exports = accountController

@@ -66,3 +66,56 @@ account_lastname: User
 account_email: manager@340.edu
 account_password: I@mAnAdm!n1strat0r
 Save these accounts' information as you will be using it often in the future.
+
+
+Task to improve the app
+
+
+
+Database Interaction: Will you need to create any new tables or columns? How will you update or query the database?
+   A table that in case of coments this can save in this
+New Model Behaviors: What new model behaviors will you need to add?
+   A new CRUDE for add coments by the clients
+
+  Will they be in a new model or added to an existing one?
+     Yes only add a one table more, that permit if the client have comments the admin can see this.
+New Controller Behaviors: What new controller behaviors will you 
+     Need a controller for the view to add comment for the client
+       that he can save or send to the app.
+     The controller that permit show for the Admin
+
+need to add? Will they be in a new controller or added to an existing one?
+      Need add almost two create and read, and another if have time
+
+New Views: What new views you need to add? Will you need to update existing views?
+     Two wies more
+Data Validation: What steps will you need to take to validate data?
+     I need that client type the comments.
+     And validation for only Admin can read the comments
+
+Error Handling: What is your approach to handling errors?
+     Need handling Errors in save the comments by Client, and read by Admin. 
+
+
+Task for doing 
+
+1 Add the link in the client account to add comments
+
+2 Add the admin account link to see the comments
+
+3 Add the page to add a comment
+ - Add submit comment only if validation to verify that the field is not empty
+ - Add controller to show form view to add comments
+ - Add the controller to add the comment to the database.
+ - Add controller to display view with comments list.
+ - Add the functionality to save comments to the model
+ - Add the functionality to read comments to the model
+
+4 Add the page to display the list of users who made a comment, it will be a table
+
+5 Add the comments table that is joined with the customer id in the database.
+
+Information New about database:
+Name a unique name for your PostgreSQl instanceProyect cse340_dbv3
+Database Pstgre dbname cse340_fcs
+User 

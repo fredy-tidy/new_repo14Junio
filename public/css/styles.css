@@ -215,22 +215,22 @@ header a {
       color:red;
     }
 
-    #inventoryDisplay{
+    #inventoryDisplay , #commentsDisplay {
       font-family: Arial;
       border-collapse: collapse;
       width: 80%;
     }
     
-    #inventoryDisplay td, #inventoryDisplay th {
+    #inventoryDisplay td, #inventoryDisplay th, #commentsDisplay td, #commentsDisplay th {
       border: 1px solid #ddd;
       padding: 8px;
     }
     
-    #inventoryDisplay tr:nth-child(even){background-color: #f2f2f2;}
+    #inventoryDisplay tr:nth-child(even), #commentsDisplay tr:nth-child(even) {background-color: #f2f2f2;}
     
-    #inventoryDisplay tr:hover {background-color: #ddd;}
+    #inventoryDisplay tr:hover, #commentsDisplay tr:hover {background-color: #ddd;}
     
-    #inventoryDisplay th {
+    #inventoryDisplay th, #commentsDisplay th  {
       padding-top: 12px;
       padding-bottom: 12px;
       text-align: left;

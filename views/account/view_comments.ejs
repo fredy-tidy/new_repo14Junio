@@ -1,0 +1,30 @@
+<div id="viewcomments_page">
+    <% if (title) { %>
+        <h1><%- title %></h1>
+        <% } else {
+          res.redirect('/')
+        } %>
+    
+           <span class="message"><%- messages() %> </span> 
+    
+        <% if (errors) { %>
+          <ul class="notice">
+         <% errors.array().forEach(error => { %>
+           <li><%= error.msg %></li>
+        <%  }) %>
+         </ul>
+        <% } %>
+
+
+
+<h2>Comments given</h2>
+<p> 
+    List the comments doing for the users of app
+</p>
+
+
+<table id="commentsDisplay">
+   <%- tableDisplay %>
+</table>
+
+</div>
